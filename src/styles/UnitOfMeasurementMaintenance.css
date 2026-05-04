@@ -1,0 +1,68 @@
+/* frontend/src/styles/UnitOfMeasurementMaintenance.css */
+.uom-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  padding: 2rem;
+}
+
+.uom-form {
+  margin-bottom: 3rem;
+}
+
+.uom-table h3 {
+  margin: 2rem 0 1rem;
+  color: var(--text-primary);
+}
+
+.uom-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.uom-table th,
+.uom-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+.uom-table th {
+  background: var(--table-header);
+  font-weight: 600;
+  color: white;
+}
+
+.type-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.type-badge.flight {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.type-badge.inventory {
+  background: #ecfdf5;
+  color: #166534;
+}
+.type-badge.small {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  margin-left: 8px;
+}
+
+.flight-uom {
+  background: var(--highlight-info);
+}
+.inventory-uom {
+  background: var(--highlight-success);
+}
+
+.no-data {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}

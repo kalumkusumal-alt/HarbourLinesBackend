@@ -1,0 +1,300 @@
+/* frontend/src/styles/DeliveryOrder.css */
+
+/* Reuse your existing JobMasterImport styles + enhancements */
+.job-card {
+  max-width: 1500px;
+  margin: 2rem auto;
+  background: var(--bg-secondary);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+}
+
+.job-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 10px;
+  background: linear-gradient(90deg, #1e40af, #3b82f6, #06b6d4, #10b981);
+  border-radius: 32px 32px 0 0;
+}
+
+.page-header {
+  text-align: center;
+  padding: 2rem 0 1rem;
+  background: var(--bg-primary);
+}
+
+.page-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  background: linear-gradient(to right, #1e40af, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.page-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  margin: 0.5rem 0 0;
+  font-weight: 500;
+}
+
+/* Wizard Steps */
+.wizard-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0 2rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.step-indicator {
+  padding: 1rem 2rem;
+  border-radius: 60px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  min-width: 180px;
+  text-align: center;
+}
+
+.step-indicator.active {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  transform: scale(1.12);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+}
+
+.step-indicator.completed {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.step-indicator::after {
+  content: '→';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #94a3b8;
+  opacity: 0.5;
+}
+
+.step-indicator:last-child::after {
+  display: none;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+label {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.required::after {
+  content: ' ';
+  color: #ef4444;
+  font-weight: bold;
+}
+
+input, select {
+  padding: 1.4rem 1.8rem;
+  border: 2.5px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 1.1rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.2);
+  transform: translateY(-4px);
+}
+
+input[readonly], input:disabled {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  font-weight: 600;
+}
+
+input::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* Auto-suggest Dropdown */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 24px 24px;
+  max-height: 420px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: var(--card-shadow);
+}
+
+.autocomplete-item {
+  padding: 1.4rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.autocomplete-item:hover {
+  background: var(--table-row-hover);
+  padding-left: 2.5rem;
+  border-left: 6px solid #3b82f6;
+  transform: translateX(8px);
+}
+
+.autocomplete-item.no-result {
+  color: #94a3b8;
+  font-style: italic;
+  text-align: center;
+  cursor: default;
+  padding: 2rem;
+}
+
+.autocomplete-item.no-result:hover {
+  background: var(--bg-secondary);
+  padding-left: 2rem;
+  border-left: none;
+  transform: none;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  padding: 3rem 2rem 2rem;
+  background: var(--bg-primary);
+  border-top: 3px dashed #3b82f6;
+  margin-top: 3rem;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 1.3rem 3rem;
+  border-radius: 60px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4);
+}
+
+.btn-primary:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .wizard-steps {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  .step-indicator {
+    padding: 0.8rem 1.2rem;
+    min-width: auto;
+  }
+  .page-title {
+    font-size: 2.2rem;
+  }
+}
+.section-card {
+  background: var(--bg-secondary);
+  border-radius: 28px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+  transition: all 0.4s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+  border-color: #3b82f6;
+}
+
+.section-card h4 {
+  margin: 0 0 2rem 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1e293b;
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #3b82f6;
+}
+
+.party-separator {
+  border: none;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #3b82f6, transparent);
+  margin: 3rem 0;
+  border-radius: 50px;
+}

@@ -1,0 +1,232 @@
+/* ====================== SIDEBAR ====================== */
+.sidebar {
+  width: 280px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  transition: width 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.sidebar.closed {
+  width: 70px;
+}
+
+/* Header with centered logo + text below */
+.sidebar-header {
+  padding: 1.8rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.sidebar.closed .logo-img {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.closed .logo-text {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* Navigation */
+.sidebar-nav {
+  padding: 1rem 0;
+  margin-top: 0.5rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0.9rem 1.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.nav-item:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding-left: 1.8rem;
+}
+
+.nav-item.active {
+  background: #3b82f6;
+  color: white;
+  font-weight: 500;
+}
+
+.nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #2563eb;
+}
+
+.nav-icon {
+  font-size: 1.4rem;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.nav-text {
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.sidebar.closed .nav-text {
+  opacity: 0;
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.sidebar-toggle:hover {
+  background: #2563eb;
+  transform: translateX(-50%) scale(1.05);
+}
+
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.dropdown {
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown-arrow {
+  margin-left: auto;
+  font-size: 1.2rem !important;
+  transition: transform 0.3s ease;
+}
+
+.dropdown.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  background: rgba(var(--bg-primary), 0.05);
+  margin-left: 2rem;
+  border-left: 3px solid #3b82f6;
+}
+
+.submenu-item {
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.submenu-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: rgb(99, 99, 99);
+  padding-left: 2rem;
+}
+
+.submenu-item.active {
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+}
+
+.submenu-icon {
+  font-size: 1.1rem !important;
+}
+
+.submenu-text {
+  font-size: 0.95rem;
+}
+
+/* Nested submenu styling */
+.nested-submenu {
+  margin-left: 2.5rem;
+  border-left: 2px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.nested-item {
+  padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  transition: all 0.3s ease;
+}
+
+.nested-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--text-primary);
+  padding-left: 2rem;
+}
+
+.nested-item.active {
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+}
+
+.nested-icon {
+  font-size: 1rem !important;
+}
+
+.dropdown-arrow.small {
+  font-size: 1rem !important;
+  margin-left: auto;
+}

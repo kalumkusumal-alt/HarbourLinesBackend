@@ -1,0 +1,79 @@
+/* frontend/src/styles/CurrencyMaintenance.css */
+.currency-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  padding: 2rem;
+}
+
+.currency-form {
+  margin-bottom: 3rem;
+}
+
+.checkbox-section {
+  padding: 1.5rem 0;
+  background: var(--bg-primary);
+  border-radius: 16px;
+  margin: 2rem 0;
+}
+
+.currency-table {
+  margin-top: 3rem;
+}
+
+.currency-table h3 {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.currency-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.currency-table th,
+.currency-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.currency-table th {
+  background: var(--table-header);
+  font-weight: 600;
+  color: white;
+}
+
+.local-currency {
+  background: var(--highlight-success) !important;
+  font-weight: 600;
+}
+
+.no-data {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+/* Edit Button */
+.btn-edit {
+  background: #10b981;
+  color: white;
+  padding: 1rem 1.8rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-edit:hover {
+  background: #059669;
+}
+
+/* Modal Overlay and Content are handled globally or in specific component CSS */
