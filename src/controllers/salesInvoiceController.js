@@ -13,7 +13,7 @@ export const createSalesInvoice = async (req, res) => {
     const invoiceData = req.body;
 
     // Optional: calculate total
-    const total = invoiceData.invoiceLines?.reduce((sum, line) => sum + (line.netValue || 0), 0) || 0;
+    const total = invoiceData.invoiceLines?.reduce((sum, line) => sum + Number(line.netValue || 0), 0) || 0;
     invoiceData.totalAmount = total;
 
     const invoice = await SalesInvoice.create(invoiceData);

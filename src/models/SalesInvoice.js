@@ -77,7 +77,7 @@ const salesInvoiceSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Auto-generate Invoice No
-salesInvoiceSchema.pre('save', async function(next) {
+salesInvoiceSchema.pre('validate', async function(next) {
   if (!this.invoiceNo) {
     const year = new Date().getFullYear().toString().slice(-2);
     const count = await this.constructor.countDocuments({ invoiceNo: new RegExp(`^SFI/DNUFL/${year}/`) });
