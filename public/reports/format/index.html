@@ -304,18 +304,65 @@ var app = new Vue({
                     }
 
                     var count20 = 0, count40 = 0, countOver40 = 0;
-                    (data.containerDetails || []).forEach(function(c) {
-                        if (c.grossWeight != null) {
-                            if (c.fclType === '20 FT') count20++;
-                            else if (c.fclType === '40 FT') count40++;
-                            else if (c.fclType === 'Over 40 FT') countOver40++;
+                    if (data.fclContainers && data.fclContainers.length > 0) {
+                        data.fclContainers.forEach(function(c) {
+                            if (c.type) {
+                                var t = c.type.replace(/\s/g, '').toLowerCase();
+                                if (t === '20ft') count20 += (c.count || 0);
+                                else if (t === '40ft') count40 += (c.count || 0);
+                                else if (t === 'over40ft') countOver40 += (c.count || 0);
+                            }
+                        });
+                    } else if (job && job.fclContainers && job.fclContainers.length > 0) {
+                        job.fclContainers.forEach(function(c) {
+                            if (c.type) {
+                                var t = c.type.replace(/\s/g, '').toLowerCase();
+                                if (t === '20ft') count20 += (c.count || 0);
+                                else if (t === '40ft') count40 += (c.count || 0);
+                                else if (t === 'over40ft') countOver40 += (c.count || 0);
+                            }
+                        });
+                    } else {
+                        (data.containerDetails || []).forEach(function(c) {
+                            if (c.grossWeight != null) {
+                                if (c.fclType === '20 FT') count20++;
+                                else if (c.fclType === '40 FT') count40++;
+                                else if (c.fclType === 'Over 40 FT') countOver40++;
+                            }
+                        });
+                    }
+
+                    var destuff20 = 0, destuff40 = 0, destuffOver40 = 0;
+                    (data.deStuffContainers || job.deStuffContainers || []).forEach(function(c) {
+                        if (c.type) {
+                            var t = c.type.replace(/\s/g, '').toLowerCase();
+                            if (t === '20ft') destuff20 += (c.count || 0);
+                            else if (t === '40ft') destuff40 += (c.count || 0);
+                            else if (t === 'over40ft') destuffOver40 += (c.count || 0);
                         }
                     });
 
-                    content = content.replace(/>0 <\/span><span[^>]*>20FT/g, '><span style="font-size:11px; line-height: 1.3;">' + count20 + '</span> </span><span style="font-family:Arial;font-style:normal;font-weight:normal;color:#000000;writing-mode: horizontal-tb;">20FT');
-                    content = content.replace(/>0 <\/span><span[^>]*>40FT/g, '><span style="font-size:11px; line-height: 1.3;">' + count40 + '</span> </span><span style="font-family:Arial;font-style:normal;font-weight:normal;color:#000000;writing-mode: horizontal-tb;">40FT');
-                    content = content.replace(/>0 <\/span><span[^>]*>OVER 40 FT/g, '><span style="font-size:11px; line-height: 1.3;">' + countOver40 + '</span> </span><span style="font-family:Arial;font-style:normal;font-weight:normal;color:#000000;writing-mode: horizontal-tb;">OVER 40 FT');
-                    content = content.replace(/>0 <\/span><span[^>]*>40 FT/g, '><span style="font-size:11px; line-height: 1.3;">' + count40 + '</span> </span><span style="font-family:Arial;font-style:normal;font-weight:normal;color:#000000;writing-mode: horizontal-tb;">40 FT');
+                    if (destuff20 > 0 || destuff40 > 0 || destuffOver40 > 0 || data.deStuffRequired || job.deStuffRequired) {
+                        content = content.replace(/Unit<\/span><\/nobr><\/span><\/p>/, 'Unit &nbsp;&nbsp;<b>&#10003;</b></span></nobr></span></p>');
+                    }
+                    if (destuff20 > 0) {
+                        content = content.replace(/(<nobr><span[^>]*>)20FT(<\/span><\/nobr>)/, '$1<span style="position:absolute; left:-20px; text-align:center; width:20px;">' + destuff20 + '</span>20FT$2');
+                    }
+                    if (destuff40 > 0) {
+                        content = content.replace(/(<nobr><span[^>]*>)40FT(<\/span><\/nobr>)/, '$1<span style="position:absolute; left:-20px; text-align:center; width:20px;">' + destuff40 + '</span>40FT$2');
+                    }
+                    if (destuffOver40 > 0) {
+                        content = content.replace(/(<nobr><span[^>]*>)OVER 40 FT(\s*<\/span><\/nobr>)/, '$1<span style="position:absolute; left:-20px; text-align:center; width:20px;">' + destuffOver40 + '</span>OVER 40 FT$2');
+                    }
+
+                    var fcl20 = count20 > 0 ? count20 : '';
+                    var fcl40 = count40 > 0 ? count40 : '';
+                    var fclOver40 = countOver40 > 0 ? countOver40 : '';
+
+                    content = content.replace(/>0 (<\/span><span[^>]*>20FT)/g, '><span style="color:transparent;">0 </span><span style="position:absolute; left:-20px; text-align:center; width:20px;">' + fcl20 + '</span>$1');
+                    content = content.replace(/>0 (<\/span><span[^>]*>40FT)/g, '><span style="color:transparent;">0 </span><span style="position:absolute; left:-20px; text-align:center; width:20px;">' + fcl40 + '</span>$1');
+                    content = content.replace(/>0 (<\/span><span[^>]*>OVER 40 FT)/g, '><span style="color:transparent;">0 </span><span style="position:absolute; left:-20px; text-align:center; width:20px;">' + fclOver40 + '</span>$1');
+                    content = content.replace(/>0 (<\/span><span[^>]*>40 FT)/g, '><span style="color:transparent;">0 </span><span style="position:absolute; left:-20px; text-align:center; width:20px;">' + fcl40 + '</span>$1');
 
                     finalPages.push(content);
                 });
