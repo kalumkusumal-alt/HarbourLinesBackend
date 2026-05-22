@@ -21,7 +21,8 @@ const blEntrySchema = new mongoose.Schema({
     type: String, 
     default: 'Non-checked',
     enum: ['Non-checked', 'Checked', 'Pending Payment', 'Paid', 'Delivered']
-  }
+  },
+  remark: { type: String, default: '' }
 });
 
 const blManifestJobSchema = new mongoose.Schema({
