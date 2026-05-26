@@ -224,8 +224,8 @@
                                     <td style="word-break:break-all;">${d.marksNumbers || ''}</td>
                                     <td>${containersHtml}</td>
                                     <td>${d.packageTypeName || ''}<br/><b>${d.noOfPackages || ''}</b></td>
-                                    <td>${d.grossWeight || ''}<br/><small>KGS</small></td>
-                                    <td>${d.cbm || ''}<br/><small>CBM</small></td>
+                                    <td>${Number(d.grossWeight || 0).toFixed(2)}<br/><small>KGS</small></td>
+                                    <td>${Number(d.cbm || 0).toFixed(2)}<br/><small>CBM</small></td>
                                 </tr>
                             `;
                         }).join('');
