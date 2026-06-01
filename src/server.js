@@ -53,6 +53,7 @@ import reportRoutes from './routes/reportRoutes.js';
 import payableRoutes from './routes/payable.js';
 import billingRoutes from './routes/billingRoutes.js';
 import blManifestRoutes from './routes/blManifestRoutes.js';
+import manifestInvoiceRoutes from './routes/manifestInvoiceRoutes.js';
 
 // Mount routes
 app.use('/api/auth', authRoutes);
@@ -81,6 +82,7 @@ app.use('/api/reports', reportRoutes);
 app.use('/api/payables', payableRoutes);
 app.use('/api/billing', billingRoutes);
 app.use('/api/bl-manifest', blManifestRoutes);
+app.use('/api/manifest-invoice', manifestInvoiceRoutes);
 
 // Serve static reports folder
 app.use('/reports', express.static(path.join(__dirname, '../public/reports')));
